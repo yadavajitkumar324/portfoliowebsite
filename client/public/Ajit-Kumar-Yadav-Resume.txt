@@ -1,0 +1,52 @@
+Ajit Kumar Yadav
+LinkedIn: https://www.linkedin.com/in/ajitkumar-yadav
+Email: yadavajitkumar324@gmail.com
+GitHub: https://github.com/yadavajitkumar324
+Mobile: +91 9580225821
+
+SKILLS
+- Languages: C, Python, Java, HTML/CSS, JavaScript, SQL
+- Tools/Platforms: VS Code, Amazon AWS, Git/GitHub, Docker, Kubernetes, Terraform
+- Soft Skills: Problem-Solving, Team Player, Project Management, Adaptability
+
+PROJECTS
+Cloud-Based Student Result Management System | Mar 2025
+- Developed a Flask-based web system to manage and publish academic results.
+- Implemented separate admin and student authentication workflows.
+- Deployed on AWS EC2 with AWS RDS (MySQL).
+- Tech Stack: HTML, CSS, JavaScript, Java/Python, Amazon RDS, Amazon EC2, Amazon S3
+
+Cloud-Based File Storage & Sharing System (Mini Google Drive) | Nov 2025
+- Built a secure cloud-based file storage and sharing application.
+- Used Amazon S3 for scalable object storage and secure access.
+- Created RESTful APIs with authentication and authorization.
+- Tech Stack: HTML, CSS, JavaScript, Python/Node.js, AWS (S3, Lambda, Cognito)
+
+TRAINING
+Cipher Schools | Data Structures & Algorithms using Java | Jun 2025 - Jul 2025
+- Covered arrays, linked lists, stacks, queues, trees, graphs, sorting, and searching.
+- Applied time-space complexity analysis in Java implementations.
+- Built a Library Management System using core DSA concepts.
+
+CERTIFICATES
+- Certification of Chat GPT and Generative AI & LLM | Infosys | Aug 2025
+- Privacy and Security in Online Social Media | NPTEL | May 2025
+- AWS Academy Graduate - Cloud Architecting - Training Badge | AWS Academy | Dec 2025
+- Computer Architecture and Computer Networking | Coursera | Nov 2025
+
+ACHIEVEMENTS
+LeetCode Competitive Programmer | Jan 2026
+- Solved 150+ algorithmic problems with focus on DSA and optimization.
+
+HackerRank Competitive Programmer | Jun 2025
+- Achieved a 5-star Java rating in core problem-solving areas.
+
+EDUCATION
+Lovely Professional University, Phagwara, Punjab
+- B.Tech, Computer Science and Engineering | CGPA: 6.21 | Since Aug 2023
+
+Viga Memorial Inter College Gazipur, Tamkuhi Raj, Kushinagar, Uttar Pradesh
+- Intermediate | Percentage: 70% | Apr 2019 - Mar 2020
+
+Samata Inter College Lachhia, Kushinagar, Uttar Pradesh
+- Matriculation | Percentage: 76% | Apr 2017 - Mar 2018
