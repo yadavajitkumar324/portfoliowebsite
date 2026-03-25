@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import * as pdfjsLib from 'pdfjs-dist';
+import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 import {
   SiC,
   SiDocker,
@@ -13,14 +15,16 @@ import {
   SiTerraform,
   SiVscodium,
 } from 'react-icons/si';
-import { FaArrowsRotate, FaAws, FaCss3Alt, FaPeopleGroup, FaPuzzlePiece } from 'react-icons/fa6';
+import { FaArrowsRotate, FaAws, FaCss3Alt, FaPeopleGroup, FaPuzzlePiece, FaMoon, FaSun } from 'react-icons/fa6';
 import { MdManageAccounts } from 'react-icons/md';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorker;
 
 const profile = {
   name: 'Ajit Kumar Yadav',
   title: 'Cloud Engineer',
   intro:
-    'Hi, I am Ajit Kumar Yadav, a Cloud Engineer focused on AWS infrastructure and secure full-stack solutions.',
+    'I am a Computer Science & Engineering student at Lovely Professional University, focused on backend engineering and cloud deployments. I design systems that stay maintainable under real-world complexity: microservices, secure APIs, and automated infrastructure.',
   email: 'yadavajitkumar324@gmail.com',
   phone: '+91 9580225821',
   linkedin: 'https://www.linkedin.com/in/ajitkumar-yadav',
@@ -39,12 +43,12 @@ const skillGroups = [
   {
     title: 'Languages',
     items: [
-      { name: 'C', icon: SiC },
-      { name: 'Python', icon: SiPython },
-      { name: 'Java', icon: SiOpenjdk },
-      { name: 'HTML/CSS', icon: SiHtml5, altIcon: FaCss3Alt },
-      { name: 'JavaScript', icon: SiJavascript },
-      { name: 'SQL', icon: SiSqlite },
+      { name: 'C', icon: SiC, level: { label: 'Advanced', score: 88 } },
+      { name: 'Python', icon: SiPython, level: { label: 'Advanced', score: 90 } },
+      { name: 'Java', icon: SiOpenjdk, level: { label: 'Advanced', score: 86 } },
+      { name: 'HTML/CSS', icon: SiHtml5, altIcon: FaCss3Alt, level: { label: 'Advanced', score: 84 } },
+      { name: 'JavaScript', icon: SiJavascript, level: { label: 'Intermediate', score: 72 } },
+      { name: 'SQL', icon: SiSqlite, level: { label: 'Intermediate', score: 70 } },
     ],
   },
   {
@@ -75,6 +79,7 @@ const projects = [
     title: 'Cloud-Based Student Result Management System',
     date: 'Mar 2025',
     tag: 'Flask + AWS',
+    image: '/projects/cloud-ai-platform.svg',
     summary:
       'A role-based academic result platform built for secure publishing and controlled student access.',
     points: [
@@ -82,13 +87,15 @@ const projects = [
       'Implemented separate authentication and authorization paths to protect private academic data.',
       'Deployed the application on AWS EC2 and connected AWS RDS MySQL for reliable persistence.',
     ],
+    repo: 'https://github.com/yadavajitkumar324/Cloud-Based-Student-Result-Management-System',
     tech: ['Flask', 'HTML', 'CSS', 'JavaScript', 'AWS EC2', 'AWS RDS', 'Amazon S3'],
   },
   {
     id: 'drive',
-    title: 'Cloud-Based File Storage & Sharing System',
+    title: 'Mini Google Drive Project',
     date: 'Nov 2025',
-    tag: 'S3 + API Security',
+    tag: 'MiniDrive + S3',
+    image: '/projects/cloud-ai-docker.svg',
     summary:
       'A mini cloud drive experience for upload, storage, and secure download of user files.',
     points: [
@@ -96,6 +103,7 @@ const projects = [
       'Used Amazon S3 for scalable object storage with high availability.',
       'Created RESTful APIs backed by authentication and authorization mechanisms.',
     ],
+    repo: 'https://github.com/yadavajitkumar324/Cloud-Based-File-Storage-Sharing-System-Mini-Google-Drive-',
     tech: ['Python/Node.js', 'HTML', 'CSS', 'JavaScript', 'Amazon S3', 'AWS Lambda', 'Amazon Cognito'],
   },
 ];
@@ -104,6 +112,7 @@ const training = {
   org: 'Cipher Schools',
   period: 'Jun 2025 - Jul 2025',
   title: 'Data Structures & Algorithms using Java',
+  certificateHref: '/certificates/cipher-school.pdf',
   points: [
     'Completed hands-on training across arrays, linked lists, stacks, queues, trees, graphs, sorting, and searching.',
     'Applied time-space complexity analysis to improve algorithmic performance in Java.',
@@ -113,28 +122,39 @@ const training = {
 
 const certificates = [
   {
+    title: 'Privacy and Security in Online Social Media',
+    issuer: 'NPTEL',
+    date: 'May 2025',
+    href: '/certificates/nptel-6th-semester-certificate.pdf',
+    image: '/certificates/nptel-6th-semester-certificate.pdf',
+  },
+  {
     title: 'Certification of Chat GPT and Generative AI & LLM',
     issuer: 'Infosys',
     date: 'Aug 2025',
     href: '/certificates/infosys-generative-ai-certificate.pdf',
-  },
-  {
-    title: 'Privacy and Security in Online Social Media',
-    issuer: 'NPTEL',
-    date: 'May 2025',
-    href: '/certificates/nptel-privacy-security-certificate.jpg',
+    image: '/certificates/infosys-generative-ai-certificate.pdf',
   },
   {
     title: 'AWS Academy Graduate - Cloud Architecting - Training Badge',
     issuer: 'AWS Academy',
     date: 'Dec 2025',
     href: '/certificates/aws-cloud-architecting-badge.pdf',
+    image: '/certificates/aws-cloud-architecting-badge.pdf',
   },
   {
-    title: 'Computer Architecture and Computer Networking',
+    title: 'The Bits and Bytes of Computer Networking',
     issuer: 'Coursera',
-    date: 'Nov 2025',
+    date: 'Sep 2024',
     href: '/certificates/coursera-networking-certificate.pdf',
+    image: '/certificates/coursera-networking-certificate.pdf',
+  },
+  {
+    title: 'Oracle Certificate',
+    issuer: 'Oracle',
+    date: 'Mar 2026',
+    href: '/certificates/oracle-merged-certificate.pdf',
+    image: '/certificates/oracle-merged-certificate.pdf',
   },
 ];
 
@@ -174,10 +194,79 @@ const education = [
   },
 ];
 
+function CertificatePreview({ src, title }) {
+  const [previewSrc, setPreviewSrc] = useState(src.endsWith('.pdf') ? '' : src);
+  const [loadingFailed, setLoadingFailed] = useState(false);
+
+  useEffect(() => {
+    let isCancelled = false;
+
+    async function renderPdfPreview() {
+      if (!src.endsWith('.pdf')) {
+        setPreviewSrc(src);
+        setLoadingFailed(false);
+        return;
+      }
+
+      try {
+        setLoadingFailed(false);
+        const loadingTask = pdfjsLib.getDocument(src);
+        const pdf = await loadingTask.promise;
+        const page = await pdf.getPage(1);
+        const viewport = page.getViewport({ scale: 1.35 });
+
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.floor(viewport.width);
+        canvas.height = Math.floor(viewport.height);
+
+        const context = canvas.getContext('2d', { alpha: false });
+        await page.render({ canvasContext: context, viewport }).promise;
+
+        if (!isCancelled) {
+          setPreviewSrc(canvas.toDataURL('image/jpeg', 0.92));
+        }
+
+        await loadingTask.destroy();
+      } catch {
+        if (!isCancelled) {
+          setLoadingFailed(true);
+        }
+      }
+    }
+
+    renderPdfPreview();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [src]);
+
+  if (loadingFailed) {
+    return <p className="certificate-preview-fallback">Preview unavailable</p>;
+  }
+
+  if (!previewSrc) {
+    return <p className="certificate-preview-fallback">Loading preview...</p>;
+  }
+
+  return <img src={previewSrc} alt={title} className="certificate-image" />;
+}
+
 export default function App() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitState, setSubmitState] = useState({ type: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(true);
+
+  const toggleTheme = () => {
+    setIsDarkTheme(!isDarkTheme);
+    document.documentElement.setAttribute('data-theme', isDarkTheme ? 'light' : 'dark');
+  };
+
+  // Set initial theme on mount
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }, []);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -231,10 +320,17 @@ export default function App() {
         </a>
 
         <nav className="nav-links">
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#journey">Journey</a>
-          <a href="#contact">Contact</a>
+          <a className="nav-highlight" href="#about">About</a>
+          <a className="nav-highlight" href="#skills">Skills</a>
+          <a className="nav-highlight" href="#projects">Projects</a>
+          <a className="nav-highlight" href="#training">Training</a>
+          <a className="nav-highlight" href="#certificates">Certificates</a>
+          <a className="nav-highlight" href="#achievements">Achievements</a>
+          <a className="nav-highlight" href="#education">Education</a>
+          <a className="nav-highlight" href="#contact">Contact</a>
+          <button className="theme-toggle" onClick={toggleTheme} title="Toggle theme">
+            {isDarkTheme ? <FaSun /> : <FaMoon />}
+          </button>
         </nav>
       </header>
 
@@ -269,14 +365,14 @@ export default function App() {
           <div className="hero-panel reveal rise-2">
             <div className="identity-card">
               <div className="avatar">
-                <img alt="Ajit Kumar Yadav" src="/profile.png" />
+                <img alt="Ajit Kumar Yadav" src="/photo34.jpg" />
               </div>
             </div>
 
             <div className="stats-grid">
               {stats.map((item) => (
                 <article className="stat-card" key={item.label}>
-                  <strong>{item.value}</strong>
+                  <strong className={['150+', '5-star', '2', 'AWS'].includes(item.value) ? 'stat-highlight' : ''}>{item.value}</strong>
                   <span>{item.label}</span>
                 </article>
               ))}
@@ -295,7 +391,7 @@ export default function App() {
 
         <section className="section about-grid" id="about">
           <article className="panel reveal rise-1">
-            <p className="section-kicker">About</p>
+            <p className="section-kicker orange-highlight">About</p>
             <h2>Building practical systems, not just interfaces</h2>
             <p>
               My work centers on cloud-backed applications that combine secure access control, structured backend logic, and user-focused delivery. I enjoy building solutions that move cleanly from development to deployment.
@@ -303,7 +399,7 @@ export default function App() {
           </article>
 
           <article className="panel checklist reveal rise-2">
-            <p className="section-kicker">What I bring</p>
+            <p className="section-kicker orange-highlight">What I bring</p>
             <ul>
               <li>Backend-first thinking for secure workflows and role-based access.</li>
               <li>AWS deployment familiarity across EC2, RDS, S3, Lambda, and Cognito.</li>
@@ -314,7 +410,7 @@ export default function App() {
 
         <section className="section" id="skills">
           <div className="section-heading reveal rise-1">
-            <p className="section-kicker blue-highlight">Skills</p>
+            <p className="section-kicker blue-highlight orange-highlight">Skills</p>
             <h2>Core stack and delivery strengths</h2>
           </div>
 
@@ -329,7 +425,16 @@ export default function App() {
                         <item.icon className="skill-icon" />
                         {item.altIcon ? <item.altIcon className="skill-icon alt" /> : null}
                       </span>
-                      <span>{item.name}</span>
+                      <span className="skill-copy">
+                        <span>{item.name}</span>
+                        {item.level ? (
+                          <span className="skill-level-graph">
+                            <span className="skill-level-track" aria-hidden="true">
+                              <span className="skill-level-fill" style={{ width: `${item.level.score}%` }} />
+                            </span>
+                          </span>
+                        ) : null}
+                      </span>
                     </span>
                   ))}
                 </div>
@@ -338,7 +443,7 @@ export default function App() {
           </div>
         </section>
 
-        <section className="section projects-layout" id="projects">
+        <section className="section projects-layout no-hover-highlight" id="projects">
           <div className="section-heading reveal rise-1">
             <p className="section-kicker blue-highlight">Projects</p>
             <h2>Selected work with cloud and security focus</h2>
@@ -347,6 +452,19 @@ export default function App() {
           <div className="horizontal-row reveal rise-2">
             {projects.map((project) => (
               <article className="panel horizontal-card project-card" key={project.id}>
+                {project.image && (
+                  <div className="project-image-container">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="project-image"
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = '/projects/cloud-ai-platform.svg';
+                      }}
+                    />
+                  </div>
+                )}
                 <div className="project-header">
                   <div>
                     <p className="section-kicker blue-highlight">{project.tag}</p>
@@ -370,6 +488,14 @@ export default function App() {
                     </span>
                   ))}
                 </div>
+
+                {project.repo ? (
+                  <div className="project-links">
+                    <a className="button project-link-button" href={project.repo} rel="noreferrer" target="_blank">
+                      View Source on GitHub
+                    </a>
+                  </div>
+                ) : null}
               </article>
             ))}
           </div>
@@ -382,8 +508,8 @@ export default function App() {
           </div>
 
           <div className="horizontal-row reveal rise-1">
-            <article className="panel horizontal-card training-card">
-              <p className="section-kicker blue-highlight">Training</p>
+            <article className="panel horizontal-card training-card" id="training">
+              <p className="section-kicker blue-highlight orange-highlight">Training</p>
               <h2>{training.title}</h2>
               <p className="meta-line">
                 {training.org} • {training.period}
@@ -393,14 +519,26 @@ export default function App() {
                   <li key={point}>{point}</li>
                 ))}
               </ul>
+              {training.certificateHref ? (
+                <div className="certificate-actions">
+                  <a className="button training-button" href={training.certificateHref} rel="noreferrer" target="_blank">
+                    View Training Certificate
+                  </a>
+                </div>
+              ) : null}
             </article>
           </div>
 
-          <article className="panel certificates-panel reveal rise-2">
-            <p className="section-kicker blue-highlight">Certificates</p>
-            <div className="stack-list certificate-row">
+          <article className="panel certificates-panel reveal rise-2" id="certificates">
+            <p className="section-kicker blue-highlight orange-highlight">Certificates</p>
+            <div className="certificate-row">
               {certificates.map((certificate) => (
                 <div className="stack-item certificate-card" key={certificate.title}>
+                  {certificate.image && (
+                    <div className="certificate-image-wrapper">
+                      <CertificatePreview src={certificate.image} title={certificate.title} />
+                    </div>
+                  )}
                   <div>
                     <strong>{certificate.title}</strong>
                     <p className="certificate-meta">
@@ -425,8 +563,8 @@ export default function App() {
             </div>
           </article>
 
-          <article className="panel achievements-panel reveal rise-3">
-            <p className="section-kicker blue-highlight">Achievements</p>
+          <article className="panel achievements-panel achievements-highlight reveal rise-3" id="achievements">
+            <p className="section-kicker blue-highlight orange-highlight">Achievements</p>
             <div className="horizontal-row achievement-row">
               {achievements.map((achievement) => (
                 <div className="stack-item emphasis horizontal-card achievement-card" key={achievement.title}>
@@ -443,7 +581,7 @@ export default function App() {
 
         <section className="section" id="education">
           <div className="section-heading reveal rise-1">
-            <p className="section-kicker blue-highlight">Education</p>
+            <p className="section-kicker blue-highlight orange-highlight">Education</p>
             <h2>Academic foundation</h2>
           </div>
 
@@ -460,43 +598,71 @@ export default function App() {
         </section>
 
         <section className="section contact-layout" id="contact">
-          <article className="panel reveal rise-1">
-            <p className="section-kicker">Contact</p>
+          <article className="panel contact-info-panel reveal rise-1">
+            <p className="section-kicker orange-highlight">Contact</p>
             <h2>Let’s build something reliable</h2>
-            <p>
+            <p className="contact-intro">
               If you want a developer who is comfortable with backend logic, cloud deployment, and clean problem solving, send a message here.
             </p>
 
             <div className="contact-blocks">
-              <a href={`mailto:${profile.email}`}>{profile.email}</a>
-              <a href={`tel:${profile.phone.replace(/\s+/g, '')}`}>{profile.phone}</a>
-              <a href={profile.linkedin} target="_blank" rel="noreferrer">
-                LinkedIn Profile
+              <a className="contact-card" href={`mailto:${profile.email}`}>
+                <span>Email</span>
+                <strong>{profile.email}</strong>
+              </a>
+              <a className="contact-card" href={`tel:${profile.phone.replace(/\s+/g, '')}`}>
+                <span>Phone</span>
+                <strong>{profile.phone}</strong>
+              </a>
+              <a className="contact-card" href={profile.linkedin} target="_blank" rel="noreferrer">
+                <span>Professional</span>
+                <strong>LinkedIn Profile</strong>
               </a>
             </div>
           </article>
 
-          <form className="panel contact-form reveal rise-2" onSubmit={handleSubmit}>
-            <label>
-              Name
-              <input name="name" onChange={handleChange} required type="text" value={formData.name} />
-            </label>
+          <form className="panel contact-form contact-form-panel reveal rise-2" onSubmit={handleSubmit}>
+            <p className="form-headline">Quick Message</p>
 
-            <label>
-              Email
-              <input name="email" onChange={handleChange} required type="email" value={formData.email} />
-            </label>
+            <div className="contact-form-grid">
+              <label>
+                Name
+                <input
+                  name="name"
+                  onChange={handleChange}
+                  placeholder="Enter your full name"
+                  required
+                  type="text"
+                  value={formData.name}
+                />
+              </label>
+
+              <label>
+                Email
+                <input
+                  name="email"
+                  onChange={handleChange}
+                  placeholder="name@example.com"
+                  required
+                  type="email"
+                  value={formData.email}
+                />
+              </label>
+            </div>
 
             <label>
               Message
               <textarea
                 name="message"
                 onChange={handleChange}
+                placeholder="Tell me about your project, timeline, and goals..."
                 required
-                rows="5"
+                rows="6"
                 value={formData.message}
               />
             </label>
+
+            <p className="form-hint">I usually reply within 24 hours.</p>
 
             <button className="button contact-send" disabled={isSubmitting} type="submit">
               {isSubmitting ? 'Sending...' : 'Send Message'}
