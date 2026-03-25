@@ -2,7 +2,7 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "Run full-stack portfolio",
+			"label": "Run frontend",
 			"type": "shell",
 			"command": "npm",
 			"args": [
@@ -13,12 +13,23 @@
 			"group": "build"
 		},
 		{
+			"label": "Run backend",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev:backend"
+			],
+			"isBackground": true,
+			"group": "build"
+		},
+		{
 			"label": "Run full-stack portfolio",
 			"type": "shell",
 			"command": "npm",
 			"args": [
 				"run",
-				"dev"
+				"dev:fullstack"
 			],
 			"isBackground": true,
 			"group": "build"

@@ -274,7 +274,7 @@ export default function App() {
     setSubmitState({ type: '', message: '' });
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://portfolio-website-backend-jnj3.onrender.com/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
