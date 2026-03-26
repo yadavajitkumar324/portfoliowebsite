@@ -1,19 +1,28 @@
-# Ajit Kumar Yadav Portfolio
+# 🌐 Portfolio Website
 
-Full-stack portfolio website built with React, Vite, Node.js, and Express.
+This is my personal **Portfolio Website** built to showcase my projects, skills, and experience as a developer. The website highlights my technical background, coding projects, and provides a way to connect with me.
 
-## Features
+## 🚀 Live Demo
+🔗 https://stirring-hotteok-2c0cfa.netlify.app/
 
+## 📌 Features
 - Interactive single-page portfolio with hero, skills, projects, achievements, training, education, and contact sections
 - Downloadable resume button backed by a generated PDF resume in the client public directory
 - Express contact API with validation and message persistence in `server/data/messages.json`
 - Separate root-level scripts to run frontend and backend independently
+- Responsive design with smooth navigation
 
-## Project Structure
+## 🛠️ Technologies Used
+- React
+- Vite
+- Express.js
+- Node.js
+- HTML, CSS, JavaScript
 
+## 📂 Project Structure
 - `client` contains the React and Vite frontend
 - `server` contains the Express API
-- `.vscode/tasks.json` includes a task to run the full-stack app
+- `.vscode/tasks.json` includes separate tasks for frontend and backend
 
 ## Run Locally
 
@@ -30,5 +39,5 @@ Full-stack portfolio website built with React, Vite, Node.js, and Express.
 
 ## Notes
 
-- The resume download now points to `client/public/Ajit-Kumar-Yadav-Resume.pdf`.
+- The resume download points to `client/public/Ajit-Kumar-Yadav-Resume.pdf`.
 - Contact submissions are stored locally in `server/data/messages.json`.
