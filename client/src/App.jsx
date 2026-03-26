@@ -16,7 +16,7 @@ import {
   SiVscodium,
 } from 'react-icons/si';
 import { FaArrowsRotate, FaAws, FaCss3Alt, FaPeopleGroup, FaPuzzlePiece, FaMoon, FaSun } from 'react-icons/fa6';
-import { MdManageAccounts } from 'react-icons/md';
+import { MdBolt, MdCloud, MdLock, MdManageAccounts, MdStorage } from 'react-icons/md';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorker;
 
@@ -35,7 +35,7 @@ const profile = {
 const stats = [
   { value: '150+', label: 'DSA problems solved' },
   { value: '5-star', label: 'HackerRank Java rating' },
-  { value: '2', label: 'Cloud portfolio projects' },
+  { value: '2+', label: 'Cloud portfolio projects' },
   { value: 'AWS', label: 'Deployment-focused stack' },
 ];
 
@@ -79,7 +79,8 @@ const projects = [
     title: 'Cloud-Based Student Result Management System',
     date: 'Mar 2025',
     tag: 'Flask + AWS',
-    image: '/projects/cloud-ai-platform.svg',
+    image:
+      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80',
     summary:
       'A role-based academic result platform built for secure publishing and controlled student access.',
     points: [
@@ -87,6 +88,7 @@ const projects = [
       'Implemented separate authentication and authorization paths to protect private academic data.',
       'Deployed the application on AWS EC2 and connected AWS RDS MySQL for reliable persistence.',
     ],
+    cloudServices: ['AWS EC2', 'AWS RDS', 'Amazon S3'],
     repo: 'https://github.com/yadavajitkumar324/Cloud-Based-Student-Result-Management-System',
     tech: ['Flask', 'HTML', 'CSS', 'JavaScript', 'AWS EC2', 'AWS RDS', 'Amazon S3'],
   },
@@ -95,7 +97,8 @@ const projects = [
     title: 'Mini Google Drive Project',
     date: 'Nov 2025',
     tag: 'MiniDrive + S3',
-    image: '/projects/cloud-ai-docker.svg',
+    image:
+      'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1600&q=80',
     summary:
       'A mini cloud drive experience for upload, storage, and secure download of user files.',
     points: [
@@ -103,6 +106,7 @@ const projects = [
       'Used Amazon S3 for scalable object storage with high availability.',
       'Created RESTful APIs backed by authentication and authorization mechanisms.',
     ],
+    cloudServices: ['Amazon S3', 'AWS Lambda', 'Amazon Cognito'],
     repo: 'https://github.com/yadavajitkumar324/Cloud-Based-File-Storage-Sharing-System-Mini-Google-Drive-',
     tech: ['Python/Node.js', 'HTML', 'CSS', 'JavaScript', 'Amazon S3', 'AWS Lambda', 'Amazon Cognito'],
   },
@@ -164,12 +168,16 @@ const achievements = [
     date: 'Jan 2026',
     detail:
       'Solved 150+ algorithmic problems across multiple difficulty levels with steady contest participation and a strong focus on optimization.',
+    href: 'https://leetcode.com/u/AJIT-KUMAR-YADAV17105/',
+    linkLabel: 'View LeetCode Profile',
   },
   {
     title: 'HackerRank Competitive Programmer',
     date: 'Jun 2025',
     detail:
       'Achieved a 5-star Java rating across problem-solving tracks including arrays, strings, linked lists, recursion, and sorting/searching.',
+    href: 'https://www.hackerrank.com/profile/yadavajitkumar31',
+    linkLabel: 'View HackerRank Profile',
   },
 ];
 
@@ -193,6 +201,24 @@ const education = [
     meta: 'Percentage: 76% | Apr 2017 - Mar 2018',
   },
 ];
+
+function getCloudServiceIcon(service) {
+  const normalizedService = service.toLowerCase();
+
+  if (normalizedService.includes('lambda')) {
+    return MdBolt;
+  }
+
+  if (normalizedService.includes('cognito')) {
+    return MdLock;
+  }
+
+  if (normalizedService.includes('s3') || normalizedService.includes('rds')) {
+    return MdStorage;
+  }
+
+  return MdCloud;
+}
 
 function CertificatePreview({ src, title }) {
   const [previewSrc, setPreviewSrc] = useState(src.endsWith('.pdf') ? '' : src);
@@ -371,9 +397,9 @@ export default function App() {
 
             <div className="stats-grid">
               {stats.map((item) => (
-                <article className={`stat-card ${item.label === 'Cloud portfolio projects' ? 'stat-cloud-projects' : ''}`} key={item.label}>
-                  <strong className={['150+', '5-star', '2', 'AWS'].includes(item.value) ? 'stat-highlight' : ''}>{item.value}</strong>
-                  <span className={item.label === 'Cloud portfolio projects' ? 'cloud-label' : ''}>{item.label}</span>
+                <article className="stat-card" key={item.label}>
+                  <strong className={['150+', '5-star', '2+', 'AWS'].includes(item.value) ? 'stat-highlight' : ''}>{item.value}</strong>
+                  <span>{item.label}</span>
                 </article>
               ))}
             </div>
@@ -446,7 +472,7 @@ export default function App() {
         <section className="section projects-layout no-hover-highlight" id="projects">
           <div className="section-heading reveal rise-1">
             <p className="section-kicker blue-highlight">Projects</p>
-            <h2>Selected work with cloud and security focus</h2>
+            <h2>Featured Projects</h2>
           </div>
 
           <div className="horizontal-row reveal rise-2">
@@ -458,11 +484,29 @@ export default function App() {
                       src={project.image}
                       alt={project.title}
                       className="project-image"
+                      loading="lazy"
                       onError={(e) => {
                         e.currentTarget.onerror = null;
-                        e.currentTarget.src = '/projects/cloud-ai-platform.svg';
+                        e.currentTarget.src = '/projects/cloud-ai-platform.jpg';
                       }}
                     />
+                    {project.cloudServices?.length ? (
+                      <div className="cloud-services-overlay" aria-label="Cloud services used">
+                        <span className="cloud-services-title">Cloud Services</span>
+                        <div className="cloud-services-list">
+                          {project.cloudServices.map((service) => {
+                            const ServiceIcon = getCloudServiceIcon(service);
+
+                            return (
+                              <span className="cloud-service-pill" key={service}>
+                                <ServiceIcon className="cloud-service-icon" aria-hidden="true" />
+                                <span>{service}</span>
+                              </span>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ) : null}
                   </div>
                 )}
                 <div className="project-header">
@@ -573,6 +617,11 @@ export default function App() {
                     <span>{achievement.date}</span>
                   </div>
                   <p>{achievement.detail}</p>
+                  {achievement.href ? (
+                    <a className="button project-link-button" href={achievement.href} rel="noreferrer" target="_blank">
+                      {achievement.linkLabel || 'View Profile'}
+                    </a>
+                  ) : null}
                 </div>
               ))}
             </div>
