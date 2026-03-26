@@ -20,6 +20,8 @@ import { MdBolt, MdCloud, MdLock, MdManageAccounts, MdStorage } from 'react-icon
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorker;
 
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || 'https://portfolio-website-backend-jnj3.onrender.com').replace(/\/$/, '');
+
 const profile = {
   name: 'Ajit Kumar Yadav',
   title: 'Cloud Engineer',
@@ -300,7 +302,7 @@ export default function App() {
     setSubmitState({ type: '', message: '' });
 
     try {
-      const response = await fetch('https://portfolio-website-backend-jnj3.onrender.com/api/contact', {
+      const response = await fetch(`${API_BASE_URL}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
