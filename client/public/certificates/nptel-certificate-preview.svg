@@ -1,0 +1,19 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NPTEL Certificate Preview">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f274a"/>
+      <stop offset="100%" stop-color="#1f5a8a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect x="80" y="70" width="1040" height="660" rx="24" fill="#ffffff"/>
+  <rect x="110" y="100" width="980" height="600" rx="14" fill="#f7fbff" stroke="#2c6fa1" stroke-width="3"/>
+  <text x="600" y="180" font-size="52" text-anchor="middle" fill="#1b4468" font-family="Georgia, serif">Privacy and Security in Online Social Media</text>
+  <text x="600" y="250" font-size="34" text-anchor="middle" fill="#33658f" font-family="Segoe UI, Arial, sans-serif">NPTEL Certificate Preview</text>
+  <line x1="210" y1="300" x2="990" y2="300" stroke="#c3dff3" stroke-width="2"/>
+  <text x="220" y="380" font-size="30" fill="#2e577d" font-family="Segoe UI, Arial, sans-serif">Issued by: NPTEL</text>
+  <text x="220" y="435" font-size="30" fill="#2e577d" font-family="Segoe UI, Arial, sans-serif">Date: May 2025</text>
+  <text x="220" y="490" font-size="30" fill="#2e577d" font-family="Segoe UI, Arial, sans-serif">Candidate: Ajit Kumar Yadav</text>
+  <rect x="220" y="560" width="350" height="60" rx="10" fill="#e8f3fb" stroke="#a7cbe6"/>
+  <text x="395" y="599" font-size="24" text-anchor="middle" fill="#2f648f" font-family="Segoe UI, Arial, sans-serif">Certificate Image</text>
+</svg>

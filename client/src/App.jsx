@@ -371,9 +371,9 @@ export default function App() {
 
             <div className="stats-grid">
               {stats.map((item) => (
-                <article className="stat-card" key={item.label}>
+                <article className={`stat-card ${item.label === 'Cloud portfolio projects' ? 'stat-cloud-projects' : ''}`} key={item.label}>
                   <strong className={['150+', '5-star', '2', 'AWS'].includes(item.value) ? 'stat-highlight' : ''}>{item.value}</strong>
-                  <span>{item.label}</span>
+                  <span className={item.label === 'Cloud portfolio projects' ? 'cloud-label' : ''}>{item.label}</span>
                 </article>
               ))}
             </div>

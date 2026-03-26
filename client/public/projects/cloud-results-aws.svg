@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">AWS Student Results Cloud Image</title>
+  <desc id="desc">Cloud themed visual showing web clients, cloud API, database and storage services on AWS.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#061a2f"/>
+      <stop offset="100%" stop-color="#123a62"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#244d7d"/>
+      <stop offset="100%" stop-color="#183755"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffc57e"/>
+      <stop offset="100%" stop-color="#ff9546"/>
+    </linearGradient>
+    <style>
+      .h { font-family: Segoe UI, Arial, sans-serif; fill: #e9f4ff; font-weight: 700; font-size: 42px; }
+      .p { font-family: Segoe UI, Arial, sans-serif; fill: #b9d4f2; font-size: 20px; }
+      .s { font-family: Segoe UI, Arial, sans-serif; fill: #d9ecff; font-size: 18px; font-weight: 600; }
+      .node { fill: url(#card); stroke: #5c88b3; stroke-width: 2; rx: 18; }
+      .line { stroke: #88d8ff; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 10 14; animation: flow 2.4s linear infinite; }
+      .dot { fill: url(#accent); animation: pulse 1.8s ease-in-out infinite; }
+      @keyframes flow { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -96; } }
+      @keyframes pulse { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+      @media (prefers-reduced-motion: reduce) { .line, .dot { animation: none; } }
+    </style>
+  </defs>
+
+  <rect width="1200" height="720" fill="url(#bg)" rx="26"/>
+
+  <g opacity="0.2" fill="#8fcfff">
+    <ellipse cx="210" cy="120" rx="90" ry="52"/>
+    <ellipse cx="990" cy="150" rx="120" ry="62"/>
+    <ellipse cx="830" cy="620" rx="170" ry="72"/>
+  </g>
+
+  <text x="60" y="75" class="h">Cloud-Based Student Result Management</text>
+  <text x="60" y="108" class="p">AWS EC2 + RDS + S3 with secure role-based access</text>
+
+  <rect x="70" y="220" width="220" height="120" class="node"/>
+  <text x="108" y="286" class="s">Students / Admins</text>
+
+  <rect x="360" y="220" width="230" height="120" class="node"/>
+  <text x="424" y="272" class="s">Web App</text>
+  <text x="414" y="300" class="p" style="font-size:16px">HTML CSS JS</text>
+
+  <rect x="660" y="220" width="240" height="120" class="node"/>
+  <text x="732" y="272" class="s">EC2 Flask API</text>
+  <text x="718" y="300" class="p" style="font-size:16px">Auth + Business Logic</text>
+
+  <rect x="950" y="160" width="180" height="100" class="node"/>
+  <circle cx="1000" cy="190" r="15" fill="#ff9900"/>
+  <circle cx="1000" cy="190" r="12" fill="none" stroke="#e0f2f1" stroke-width="1.5"/>
+  <circle cx="1015" cy="190" r="15" fill="#ff9900"/>
+  <circle cx="1015" cy="190" r="12" fill="none" stroke="#e0f2f1" stroke-width="1.5"/>
+  <circle cx="1030" cy="190" r="15" fill="#ff9900"/>
+  <circle cx="1030" cy="190" r="12" fill="none" stroke="#e0f2f1" stroke-width="1.5"/>
+  <text x="1014" y="245" class="s">RDS MySQL</text>
+
+  <rect x="950" y="300" width="180" height="100" class="node"/>
+  <g transform="translate(1000, 330)">
+    <rect x="-12" y="-10" width="24" height="20" fill="#ff9900" rx="3"/>
+    <rect x="-14" y="12" width="28" height="8" fill="#ff9900" rx="2"/>
+  </g>
+  <text x="1022" y="380" class="s">Amazon S3</text>
+
+  <line x1="290" y1="280" x2="360" y2="280" class="line"/>
+  <line x1="590" y1="280" x2="660" y2="280" class="line"/>
+  <line x1="900" y1="255" x2="950" y2="210" class="line"/>
+  <line x1="900" y1="305" x2="950" y2="350" class="line"/>
+
+  <circle cx="360" cy="280" r="8" class="dot"/>
+  <circle cx="660" cy="280" r="8" class="dot"/>
+  <circle cx="950" cy="210" r="8" class="dot"/>
+  <circle cx="950" cy="350" r="8" class="dot"/>
+
+  <rect x="70" y="500" width="1060" height="125" rx="14" fill="#0f2c49" stroke="#44709a" stroke-width="1.5"/>
+  <text x="100" y="548" class="s">Cloud Highlights</text>
+  <text x="100" y="582" class="p">Separate login for students and administrators, secure result publishing, persistent storage, and scalable cloud deployment.</text>
+</svg>
